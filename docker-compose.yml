@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  dev:
+    build: .
+    ports: 
+      - '8000:8000'
+    volumes: 
+      - .:/personal_website
+    environment:
+      - DJANGO_SETTINGS_MODULE=personal_website.settings.dev
+    env_file: .dev.env
+    depends_on:
+      - dev_db
+    command:
+      bash -c "/wait-for-postgres.sh dev_db -- 'python manage.py migrate' && python manage.py runserver 0.0.0.0:8000 --traceback"
+
+  prod:
+    build: .
+    ports: 
+      - '8000:8000'
+    volumes: 
+      - .:/personal_website
+    environment:
+      - DJANGO_SETTINGS_MODULE=personal_website.settings.prod
+    env_file: .prod.env
+    depends_on:
+      - prod_db
+    command:
+      bash -c "/wait-for-postgres.sh prod_db -- 'python manage.py migrate' && gunicorn personal_website.wsgi:application -w 2 -b :8000"
+
+  nginx:
+    image: nginx:1.19.0-alpine
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - prod
+
+  dev_db:
+    build:
+      context: ./db
+    env_file: .dev.env
+  
+  prod_db:
+    build:
+      context: ./db
+    env_file: .prod.env
