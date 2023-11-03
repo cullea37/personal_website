@@ -1,0 +1,37 @@
+name: Deploy on Version Bump
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: [raspberrypi]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for version bump
+        id: check_version
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^version.txt$'
+          then
+            echo "Version bumped. Proceed with deployment."
+          else
+            echo "No version bump. Skipping deployment."
+            exit 0
+          fi
+
+      - name: Run production Docker Compose
+        if: steps.check_version.outputs.bump == 'Version bumped. Proceed with deployment.'
+        run: |
+          # Change to your repository directory
+          cd /home/andrew/repos/personal_website
+
+          # Pull the latest changes
+          git pull origin master
+
+          # Run the production Docker Compose setup with .env file
+          docker-compose -f docker-compose.prod.yml up -d --build
