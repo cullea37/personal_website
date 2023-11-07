@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  dev:
+    build: .
+    ports: 
+      - '8000:8000'
+    volumes: 
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=personal_website.settings.dev
+    env_file: .django.dev.env
+    depends_on:
+      - dev_db
+    command:
+      bash -c "/wait-for-postgres.sh dev_db -- 'python manage.py migrate' && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000 --traceback & python file_observer.py"
+
+  dev_frontend:
+    build:
+      context: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - dev
+    command: 
+      npm run dev
+
+  dev_db:
+    build:
+      context: ./db
+    env_file: .django.dev.env
+  

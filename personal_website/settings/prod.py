@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 # Read .env files
-load_dotenv(os.path.join(BASE_DIR, ".prod.env"))
+load_dotenv(os.path.join(BASE_DIR, ".django.prod.env"))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 

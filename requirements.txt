@@ -3,3 +3,4 @@ python-dotenv
 sqlparse==0.4.4
 psycopg2-binary==2.9.1
 gunicorn
+watchdog==2.1.6

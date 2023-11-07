@@ -3,11 +3,13 @@ from dotenv import load_dotenv
 import os
 
 # Read .env files
-load_dotenv(os.path.join(BASE_DIR, ".dev.env"))
+load_dotenv(os.path.join(BASE_DIR, ".django.dev.env"))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = True
+
+ALLOWED_HOSTS = ["*"]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
