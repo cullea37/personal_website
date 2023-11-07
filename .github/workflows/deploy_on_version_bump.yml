@@ -3,7 +3,7 @@ name: Deploy on Version Bump
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -34,4 +34,4 @@ jobs:
           git pull origin master
 
           # Run the production Docker Compose setup with .env file
-          docker-compose -f docker-compose.prod.yml up -d --build
+          docker-compose -f docker-compose.prod.yml up nginx -d --build
