@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   prod:
     build: .
@@ -35,6 +35,8 @@ services:
       - prod
     command:
       sh -c "npm run build && npm run start"
+    env_file:
+      - .next.prod.env
 
   prod_db:
     build:

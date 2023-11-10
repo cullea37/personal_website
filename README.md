@@ -45,7 +45,7 @@ These instructions will get you a copy of the project up and running on your loc
     docker compose -f docker-compose.prod.yml up nginx --build
     ```
 
-    This will run nginx to route to Django and Next.js. All routes (static, api, admin + frontend) are served locally via localhost or through the web via `www.andrewcullen.ie`
+    This will run nginx to route to Django and Next.js. All routes (static, api, admin + frontend) are served locally via `localhost` or through the web via `www.andrewcullen.ie`
 
 To stop the Docker containers, you can press `Ctrl+C` in the terminal window where `docker-compose up` is running. To stop and remove the containers, networks, and volumes defined in your `docker-compose.yml` file, you can run `docker-compose down`.
 

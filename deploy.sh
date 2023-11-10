@@ -36,7 +36,7 @@ esac
 NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
 # Write the new version to the version file
-echo $NEW_VERSION > version.txt
+echo "$NEW_VERSION" > version.txt
 
 # Add the version file to the staging area
 git add version.txt

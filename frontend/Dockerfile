@@ -4,6 +4,9 @@ FROM node:lts-alpine
 # Set the working directory
 WORKDIR /app
 
+# Install "next" globally
+RUN npm install -g next
+
 # Copy package.json and package-lock.json before other files
 # Utilise Docker cache to save re-installing dependencies if unchanged
 COPY package*.json ./

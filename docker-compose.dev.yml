@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   dev:
     build: .
@@ -25,6 +25,8 @@ services:
       - dev
     command: 
       npm run dev
+    env_file:
+      - .next.dev.env
 
   dev_db:
     build:

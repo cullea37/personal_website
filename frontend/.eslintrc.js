@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -11,17 +13,37 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    project: process.env.NODE_ENV === 'production' ? './tsconfig.json' : './frontend/tsconfig.json',
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      typescript: {
+        alwaysTryTypes: true,
+      },
+      alias: {
+        map: [
+          ['@components', path.resolve(__dirname, './src/components')],
+          ['@public', path.resolve(__dirname, './public')],
+        ],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      },
+    },
   },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   extends: [
     'airbnb',
     'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
     'prettier',
+    'next'
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
@@ -38,7 +60,6 @@ module.exports = {
       'error',
       { functions: false, classes: false, variables: true },
     ],
-    // suppress errors for missing 'import React' in files
     'react/react-in-jsx-scope': 'off',
   },
 };
