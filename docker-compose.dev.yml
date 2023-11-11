@@ -17,14 +17,13 @@ services:
   dev_frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile.dev
     ports:
       - '3000:3000'
     volumes:
       - ./frontend:/app
     depends_on:
       - dev
-    command: 
-      npm run dev
     env_file:
       - .next.dev.env
 

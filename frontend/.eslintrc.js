@@ -27,6 +27,7 @@ module.exports = {
         map: [
           ['@components', path.resolve(__dirname, './src/components')],
           ['@public', path.resolve(__dirname, './public')],
+          ['@src', path.resolve(__dirname, './src')],
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       },

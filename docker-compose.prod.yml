@@ -27,14 +27,13 @@ services:
   prod_frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile.prod
     ports:
       - '3000:3000'
     volumes:
       - ./frontend:/app
     depends_on:
       - prod
-    command:
-      sh -c "npm run build && npm run start"
     env_file:
       - .next.prod.env
 

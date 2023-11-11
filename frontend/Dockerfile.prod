@@ -1,0 +1,38 @@
+# Stage 1: Build the application
+FROM node:lts-alpine AS builder
+
+WORKDIR /app
+
+# Copy only the package.json and lock files to take advantage of Docker layer caching
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Install "next" globally
+RUN npm install -g next
+
+# Copy the entire application
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Stage 2: Create a smaller image for running the application
+FROM node:lts-alpine
+
+WORKDIR /app
+
+# Copy only the necessary files from the builder stage
+COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+
+# Install only production dependencies
+RUN npm install --omit=dev
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "run", "start"]

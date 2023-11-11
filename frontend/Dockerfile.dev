@@ -19,3 +19,6 @@ COPY . .
 
 # Expose the listening port
 EXPOSE 3000
+
+# Start the dev application
+CMD ["npm", "run", "dev"]

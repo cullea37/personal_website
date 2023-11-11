@@ -1,4 +1,4 @@
-Django==4.2.6
+Django==4.2.7
 python-dotenv
 sqlparse==0.4.4
 psycopg2-binary==2.9.1

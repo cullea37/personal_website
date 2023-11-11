@@ -32,6 +32,20 @@ case $1 in
     ;;
 esac
 
+# Ask the user if they've made the required changes to the .env files
+read -p -r "Have you made the required changes to the .env files on the production host? (y/n) " answer
+
+# Check the user's answer
+case ${answer:0:1} in
+    y|Y )
+        echo "Continuing with the script..."
+    ;;
+    * )
+        echo "Please make the required changes and then run the script again."
+        exit 1
+    ;;
+esac
+
 # Construct the new version
 NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
