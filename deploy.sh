@@ -33,7 +33,7 @@ case $1 in
 esac
 
 # Ask the user if they've made the required changes to the .env files
-read -p -r "Have you made the required changes to the .env files on the production host? (y/n) " answer
+read -p "Have you made the required changes to the .env files on the production host? (y/n) " answer
 
 # Check the user's answer
 case ${answer:0:1} in
@@ -59,4 +59,4 @@ git add version.txt
 git commit -m "Bumping version to $NEW_VERSION, triggering build and deploy."
 
 # Push the changes to GitHub
-git push origin master
+git push origin main
