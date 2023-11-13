@@ -20,16 +20,16 @@ const theme: Theme = {
   colors: {
     text: 'rgb(39, 46, 54)',
     background: 'rgb(235, 235, 235)',
-    primary: 'rgb(44, 58, 140)',
-    secondary: 'rgb(2, 167, 232)',
-    accent: 'rgb(153, 255, 153)',
+    primary: 'rgb(4, 147, 154)',
+    secondary: 'rgb(154, 4, 147)',
+    accent: 'rgb(147, 154, 4)',
     modes: {
       dark: {
         text: 'rgb(235, 235, 235)',
         background: 'rgb(39, 46, 54)',
-        primary: 'rgb(115, 130, 211)',
-        secondary: 'rgb(23, 188, 253)',
-        accent: 'rgb(0, 102, 0)',
+        primary: 'rgb(101, 244, 251)',
+        secondary: 'rgb(251, 101, 244)',
+        accent: 'rgb(244, 251, 101)',
       },
     },
   },
