@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+/** @jsxImportSource theme-ui */
+import { ReactNode } from 'react';
 import Navbar from '@components/Navbar';
 
 function Layout({ children }: { children: ReactNode }) {

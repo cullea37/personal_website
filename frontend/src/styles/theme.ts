@@ -1,4 +1,42 @@
 import { Theme } from 'theme-ui';
+import { mix } from '@theme-ui/color';
+
+const baseColors = {
+  text: 'hsl(220deg 30% 10%)',
+  background: 'rgb(235, 235, 235)',
+  primary: 'rgb(4, 147, 154)',
+  secondary: 'rgb(154, 4, 147)',
+  accent: 'rgb(147, 154, 4)',
+  shadow: '220deg 30% 10%',
+};
+
+const darkColors = {
+  text: 'hsl(0deg 0% 92%)',
+  background: 'rgb(39, 46, 54)',
+  primary: 'rgb(101, 244, 251)',
+  secondary: 'rgb(251, 101, 244)',
+  accent: 'rgb(244, 251, 101)',
+  shadow: '0deg 0% 92%',
+};
+
+const baseStyles = {
+  Button: {
+    color: 'background',
+    bg: 'primary',
+    cursor: 'pointer',
+    borderRadius: 'default',
+    transition: 'all 0.2s ease-in-out',
+    boxShadow: 'low',
+    '&:hover': {
+      transform: 'translateY(-5px)',
+      boxShadow: 'medium',
+    },
+    '&:active': {
+      transform: 'translateY(0px)',
+      boxShadow: 'high',
+    },
+  },
+};
 
 const theme: Theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -18,26 +56,25 @@ const theme: Theme = {
     heading: 1.25,
   },
   colors: {
-    text: 'rgb(39, 46, 54)',
-    background: 'rgb(235, 235, 235)',
-    primary: 'rgb(4, 147, 154)',
-    secondary: 'rgb(154, 4, 147)',
-    accent: 'rgb(147, 154, 4)',
+    ...baseColors,
     modes: {
       dark: {
-        text: 'rgb(235, 235, 235)',
-        background: 'rgb(39, 46, 54)',
-        primary: 'rgb(101, 244, 251)',
-        secondary: 'rgb(251, 101, 244)',
-        accent: 'rgb(244, 251, 101)',
+        ...darkColors,
       },
     },
   },
   shadows: {
-    low: '-0.7px 0.5px 1px hsl(0deg 0% 0% / 0.19), -3px 2.2px 4.2px -2.5px hsl(0deg 0% 0% / 0.19)',
-    medium:
-      '-0.7px 0.5px 1px hsl(0deg 0% 0% / 0.27), -14.9px 11.1px 20.9px -2.5px hsl(0deg 0% 0% / 0.27)',
-    high: '-0.7px 0.5px 1px hsl(0deg 0% 0% / 0.25), -10.5px 7.9px 14.8px -0.8px hsl(0deg 0% 0% / 0.25), -31.8px 23.8px 44.7px -1.7px hsl(0deg 0% 0% / 0.25), -82.8px 61.9px 116.3px -2.5px hsl(0deg 0% 0% / 0.25)',
+    low: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.41),
+    0px 1.2px 1.4px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.41)`,
+    medium: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.38),
+    0px 1.6px 1.8px -1.2px hsl(var(--theme-ui-colors-shadow) / 0.38),
+    0px 5.9px 6.7px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.39)`,
+    high: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.35),
+    0px 2.1px 2.4px -0.5px hsl(var(--theme-ui-colors-shadow) / 0.35),
+    0px 4.4px 5px -1px hsl(var(--theme-ui-colors-shadow) / 0.36),
+    0px 8.4px 9.5px -1.5px hsl(var(--theme-ui-colors-shadow) / 0.36),
+    -0.1px 15.4px 17.4px -2px hsl(var(--theme-ui-colors-shadow) / 0.36),
+    -0.2px 26.5px 30px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.36)`,
   },
   styles: {
     root: {
@@ -46,7 +83,7 @@ const theme: Theme = {
       fontWeight: 'body',
     },
     h1: {
-      color: 'text',
+      color: 'background',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
@@ -93,9 +130,6 @@ const theme: Theme = {
       fontWeight: 'body',
       lineHeight: 'body',
     },
-    a: {
-      color: 'primary',
-    },
     pre: {
       fontFamily: 'monospace',
       overflowX: 'auto',
@@ -107,23 +141,15 @@ const theme: Theme = {
       fontFamily: 'monospace',
       fontSize: 'inherit',
     },
-    table: {
-      width: '100%',
-      borderCollapse: 'separate',
-      borderSpacing: 0,
-    },
-    th: {
-      textAlign: 'left',
-      borderBottomStyle: 'solid',
-    },
-    td: {
-      textAlign: 'left',
-      borderBottomStyle: 'solid',
-    },
-    img: {
-      maxWidth: '100%',
+  },
+  buttons: {
+    basic: {
+      ...baseStyles.Button,
     },
   },
 };
+
+export const hover = (color: string) => mix('rgb(0, 0, 0)', color, 0.2);
+export const active = (color: string) => mix('rgb(0, 0, 0)', color, 0.1);
 
 export default theme;
