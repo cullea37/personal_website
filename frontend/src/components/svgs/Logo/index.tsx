@@ -1,3 +1,5 @@
+/** @jsxImportSource theme-ui */
+import { useState } from 'react';
 import { useThemeUI } from 'theme-ui';
 import dynamic from 'next/dynamic';
 
@@ -16,6 +18,7 @@ interface LogoProps {
   height?: string;
   bodyColor?: string;
   backgroundColor?: string;
+  hoverColor?: string;
   LogoType: string;
 }
 
@@ -24,6 +27,7 @@ Logo.defaultProps = {
   height: null,
   bodyColor: 'primary',
   backgroundColor: 'background',
+  hoverColor: 'secondary',
 };
 
 const logoComponents = {
@@ -40,23 +44,37 @@ function Logo({
   height,
   bodyColor,
   backgroundColor,
+  hoverColor,
 }: LogoProps): JSX.Element {
   const context = useThemeUI();
   const finalBodyColor = context.theme.colors[bodyColor] as string;
   const finalBackgroundColor = context.theme.colors[backgroundColor] as string;
+  const finalHoverColor = context.theme.colors[hoverColor] as string;
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const LogoComponent = logoComponents[
     LogoType
   ] as React.ComponentType<LogoProps>;
 
   return (
-    <LogoComponent
-      LogoType={LogoType}
-      width={width}
-      height={height}
-      bodyColor={finalBodyColor}
-      backgroundColor={finalBackgroundColor}
-    />
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <LogoComponent
+        LogoType={LogoType}
+        width={width}
+        height={height}
+        bodyColor={isHovered ? finalHoverColor : finalBodyColor}
+        backgroundColor={isHovered ? finalHoverColor : finalBackgroundColor}
+      />
+    </div>
   );
 }
 

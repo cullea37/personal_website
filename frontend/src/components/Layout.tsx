@@ -4,7 +4,11 @@ import Navbar from '@components/Navbar';
 
 function Layout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div
+      sx={{
+        paddingTop: '60px',
+      }}
+    >
       <Navbar />
       {children}
     </div>

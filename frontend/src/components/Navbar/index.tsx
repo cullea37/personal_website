@@ -1,8 +1,10 @@
 /** @jsxImportSource theme-ui */
 import NextLink from 'next/link';
-import { Box } from 'theme-ui';
 import NavButton from '@components/Navbar/NavButton';
+import NavIconButton from '@components/Navbar/NavIconButton';
 import Logo from '@components/svgs/Logo';
+import Mode from '@components/svgs/Mode';
+import { Box, Button } from 'theme-ui';
 
 function Navbar() {
   return (
@@ -10,7 +12,8 @@ function Navbar() {
       as="nav"
       sx={{
         bg: 'background',
-        position: 'sticky',
+        position: 'fixed',
+        top: '0',
         width: '100%',
         height: '60px',
       }}
@@ -23,19 +26,38 @@ function Navbar() {
           marginTop: 'none',
           marginBlockStart: '0px',
           marginBlockEnd: '0px',
-          padding:'0px',
+          padding: '0px',
+          height: '60px',
         }}
       >
         <li>
           <NextLink href="/">
-            <Logo
-              LogoType="TransparentLong"
-              height="60px"
-              bodyColor="primary"
-            />
+            <Button
+              variant="nav"
+              sx={{
+                bg: 'background',
+                padding: '0px',
+              }}
+            >
+              <Logo
+                LogoType="TransparentLong"
+                height="60px"
+                bodyColor="primary"
+                hoverColor="secondary"
+              />
+            </Button>
           </NextLink>
         </li>
         <div sx={{ display: 'flex' }}>
+          <NavIconButton
+            NavIconType="Linkedin"
+            href="http://www.linkedin.com/in/andrew-cullen-software-developer"
+          />
+          <NavIconButton
+            NavIconType="Github"
+            href="https://github.com/cullea37"
+          />
+          <Mode ModeType="Dark" />
           <NavButton href="/" label="Home" />
           <NavButton href="/blog" label="Blog" />
           <NavButton href="/portfolio" label="Portfolio" />

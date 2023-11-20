@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from 'theme-ui';
-import { hover, active } from '@src/styles/theme';
 
 interface NavButtonProps {
   href: string;
@@ -16,20 +15,12 @@ function NavButton({ href, label }: NavButtonProps) {
     <li>
       <Link href={href} passHref>
         <Button
+          variant="nav"
           sx={{
-            bg: 'background',
-            color: 'primary',
-            borderRadius: '0',
-            height: '100%',
-            '&:hover': {
-              bg: hover('background'),
-              transform: 'none',
-            },
+            borderBottom: isSelected ? '4px solid' : 'none',
             '&:active': {
-              bg: active('primary'),
-              transform: 'none',
+              borderBottom: '4px solid',
             },
-            textDecoration: isSelected ? 'underline' : 'none',
           }}
         >
           {label}
