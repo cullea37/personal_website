@@ -13,6 +13,8 @@ services:
       - prod_db
     command:
       bash -c "/wait-for-postgres.sh prod_db -- 'python manage.py migrate' && python manage.py collectstatic --noinput && gunicorn personal_website.wsgi:application -w 2 -b :8000"
+    restart: 
+      always
 
   nginx:
     image: nginx:1.19.0-alpine
@@ -23,6 +25,8 @@ services:
       - ./staticfiles:/staticfiles
     depends_on:
       - prod_frontend
+    restart: 
+      always
 
   prod_frontend:
     build:
@@ -36,8 +40,12 @@ services:
       - prod
     env_file:
       - .next.prod.env
+    restart: 
+      always
 
   prod_db:
     build:
       context: ./db
     env_file: .django.prod.env
+    restart: 
+      always

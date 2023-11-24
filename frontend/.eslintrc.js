@@ -28,6 +28,7 @@ module.exports = {
           ['@components', path.resolve(__dirname, './src/components')],
           ['@public', path.resolve(__dirname, './public')],
           ['@src', path.resolve(__dirname, './src')],
+          ['@hooks', path.resolve(__dirname, './src/hooks')],
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       },

@@ -1,5 +1,4 @@
 import { Theme } from 'theme-ui';
-import { mix } from '@theme-ui/color';
 
 const baseColors = {
   text: 'hsl(220deg 30% 10%)',
@@ -38,10 +37,8 @@ const baseStyles = {
   },
 };
 
-const hover = (color: string) => mix('rgb(0, 0, 0)', color, 0.2);
-const active = (color: string) => mix('rgb(0, 0, 0)', color, 0.1);
-
 const theme: Theme = {
+  breakpoints: ['576px', '768px', '992px', '1200px'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body: '"Avenir Next", system-ui, sans-serif',
@@ -61,6 +58,9 @@ const theme: Theme = {
   colors: {
     ...baseColors,
     modes: {
+      light: {
+        ...baseColors,
+      },
       dark: {
         ...darkColors,
       },
@@ -162,13 +162,12 @@ const theme: Theme = {
         transition: 'all 0.2s ease-in-out',
         transform: 'none',
         color: 'secondary',
-        bg: hover('primary'),
       },
       '&:active': {
         transition: 'all 0.2s ease-in-out',
         transform: 'none',
         color: 'secondary',
-        bg: active('primary'),
+        bg: 'primary',
       },
     },
     navIcon: {
@@ -185,13 +184,12 @@ const theme: Theme = {
         transition: 'all 0.2s ease-in-out',
         transform: 'none',
         color: 'secondary',
-        bg: hover('primary'),
       },
       '&:active': {
         transition: 'all 0.2s ease-in-out',
         transform: 'none',
         color: 'secondary',
-        bg: active('primary'),
+        bg: 'primary',
       },
     },
   },

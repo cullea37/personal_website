@@ -2,11 +2,15 @@
 import NextLink from 'next/link';
 import NavButton from '@components/Navbar/NavButton';
 import NavIconButton from '@components/Navbar/NavIconButton';
+import Burger from '@components/Navbar/Burger';
 import Logo from '@components/svgs/Logo';
 import Mode from '@components/svgs/Mode';
 import { Box, Button } from 'theme-ui';
+import useBreakpointIndex from '@hooks/useBreakpointIndex';
 
 function Navbar() {
+  const breakpointIndex = useBreakpointIndex();
+
   return (
     <Box
       as="nav"
@@ -41,7 +45,7 @@ function Navbar() {
             >
               <Logo
                 LogoType="TransparentLong"
-                height="60px"
+                height={breakpointIndex === 0 ? '48px' : '60px'}
                 bodyColor="primary"
                 hoverColor="secondary"
               />
@@ -49,18 +53,28 @@ function Navbar() {
           </NextLink>
         </li>
         <div sx={{ display: 'flex' }}>
-          <NavIconButton
-            NavIconType="Linkedin"
-            href="http://www.linkedin.com/in/andrew-cullen-software-developer"
-          />
-          <NavIconButton
-            NavIconType="Github"
-            href="https://github.com/cullea37"
-          />
-          <Mode ModeType="Dark" />
-          <NavButton href="/" label="Home" />
-          <NavButton href="/blog" label="Blog" />
-          <NavButton href="/portfolio" label="Portfolio" />
+          {breakpointIndex > 0 && (
+            <>
+              <NavIconButton
+                NavIconType="Linkedin"
+                href="http://www.linkedin.com/in/andrew-cullen-software-developer"
+              />
+              <NavIconButton
+                NavIconType="Github"
+                href="https://github.com/cullea37"
+              />
+              <Mode />
+            </>
+          )}
+          {breakpointIndex > 2 ? (
+            <>
+              <NavButton href="/" label="Home" />
+              <NavButton href="/blog" label="Blog" />
+              <NavButton href="/portfolio" label="Portfolio" />
+            </>
+          ) : (
+            <Burger />
+          )}
         </div>
       </ul>
     </Box>

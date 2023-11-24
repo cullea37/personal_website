@@ -30,6 +30,9 @@
       "@components/*": [
         "./src/components/*"
       ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
     },
     "incremental": true,
     "plugins": [
