@@ -170,6 +170,25 @@ const theme: Theme = {
         bg: 'primary',
       },
     },
+    burger: {
+      bg: 'background',
+      color: 'primary',
+      borderRadius: '0',
+      height: '100%',
+      width: '100vw',
+      cursor: 'pointer',
+      '&:hover': {
+        transition: 'all 0.2s ease-in-out',
+        transform: 'none',
+        color: 'secondary',
+      },
+      '&:active': {
+        transition: 'all 0.2s ease-in-out',
+        transform: 'none',
+        color: 'secondary',
+        bg: 'primary',
+      },
+    },
     navIcon: {
       bg: 'background',
       color: 'primary',

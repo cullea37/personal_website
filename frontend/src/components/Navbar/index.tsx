@@ -20,10 +20,12 @@ function Navbar() {
         top: '0',
         width: '100%',
         height: '60px',
+        zIndex: 100,
       }}
     >
       <ul
         sx={{
+          bg: 'background',
           display: 'flex',
           justifyContent: 'space-between',
           listStyleType: 'none',

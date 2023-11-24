@@ -1,11 +1,13 @@
-// import Link from 'next/link';
-// import { useRouter } from 'next/router';
 import BurgerOpenButton from '@components/Navbar/Burger/BurgerOpenButton';
+import BurgerMenu from '@components/Navbar/Burger/BurgerMenu';
 
 function Burger() {
-  // const router = useRouter();
-
-  return <BurgerOpenButton />;
+  return (
+    <>
+      <BurgerOpenButton />
+      <BurgerMenu />
+    </>
+  );
 }
 
 export default Burger;

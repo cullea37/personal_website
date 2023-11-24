@@ -15,9 +15,6 @@ RUN npm install -g next
 # Copy the entire application
 COPY . .
 
-# Build the application
-RUN npm run build
-
 # Stage 2: Create a smaller image for running the application
 FROM node:lts-alpine
 
@@ -30,6 +27,9 @@ COPY --from=builder /app/public ./public
 
 # Install only production dependencies
 RUN npm install --omit=dev
+
+# Build the application
+RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000

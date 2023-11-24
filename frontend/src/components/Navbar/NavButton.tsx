@@ -5,17 +5,22 @@ import { Button } from 'theme-ui';
 interface NavButtonProps {
   href: string;
   label: string;
+  variant?: string;
 }
 
-function NavButton({ href, label }: NavButtonProps) {
+NavButton.defaultProps = {
+  variant: 'nav',
+};
+
+function NavButton({ href, label, variant }: NavButtonProps) {
   const router = useRouter();
   const isSelected = router.pathname === href;
 
   return (
-    <li>
+    <li style={{ height: '100%' }}>
       <Link href={href} passHref>
         <Button
-          variant="nav"
+          variant={variant}
           sx={{
             borderBottom: isSelected ? '4px solid' : 'none',
             '&:active': {

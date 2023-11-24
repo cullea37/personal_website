@@ -20,6 +20,7 @@ function BurgerOpenButton() {
         stroke: hoverColor,
         height: '60px',
         width: '60px',
+        zIndex: 100,
       }}
       onClick={handleToggle}
     >
