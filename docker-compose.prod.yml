@@ -1,4 +1,8 @@
 version: "3.3"
+
+volumes:
+  next_static_files:
+
 services:
   prod:
     build: .
@@ -17,14 +21,17 @@ services:
       always
 
   nginx:
-    image: nginx:1.19.0-alpine
+    build: ./nginx 
     ports:
-      - '80:80'
+      - '443:443'
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./staticfiles:/staticfiles
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt/archive/andrewcullen.ie:/etc/nginx/ssl/andrewcullen.ie
+      - next_static_files:/usr/share/nginx/html/_next
     depends_on:
       - prod_frontend
+      - prod
     restart: 
       always
 
@@ -36,8 +43,7 @@ services:
       - '3000:3000'
     volumes:
       - ./frontend:/app
-    depends_on:
-      - prod
+      - next_static_files:/app/.next
     env_file:
       - .next.prod.env
     restart: 
