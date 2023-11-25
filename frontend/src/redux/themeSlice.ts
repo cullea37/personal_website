@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const themeSlice = createSlice({
   name: 'theme',
-  initialState: { mode: 'light' },
+  initialState: { mode: 'dark' },
   reducers: {
     setLightMode: (state) => {
       // eslint-disable-next-line no-param-reassign

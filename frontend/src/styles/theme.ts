@@ -3,6 +3,8 @@ import { Theme } from 'theme-ui';
 const baseColors = {
   text: 'hsl(220deg 30% 10%)',
   background: 'rgb(235, 235, 235)',
+  backgroundDarker: 'rgb(225, 225, 225)',
+  backgroundDarkest: 'rgb(220, 220, 220)',
   primary: 'rgb(4, 147, 154)',
   secondary: 'rgb(154, 4, 147)',
   accent: 'rgb(147, 154, 4)',
@@ -12,6 +14,8 @@ const baseColors = {
 const darkColors = {
   text: 'hsl(0deg 0% 92%)',
   background: 'rgb(39, 46, 54)',
+  backgroundDarker: 'rgb(32, 38, 45)',
+  backgroundDarkest: 'rgb(27, 32, 38)',
   primary: 'rgb(101, 244, 251)',
   secondary: 'rgb(251, 101, 244)',
   accent: 'rgb(244, 251, 101)',
@@ -148,6 +152,24 @@ const theme: Theme = {
       transition: 'all 0.2s ease-in-out',
     },
   },
+  text: {
+    linkText: {
+      fontFamily: 'heading',
+      lineHeight: 'body',
+      fontWeight: 'body',
+      fontStyle: 'italic',
+      fontSize: 2,
+      color: 'accent',
+      transition: 'all 0.2s ease-in-out',
+      '&:hover': {
+        color: 'secondary',
+        textDecorationLine: 'underline',
+      },
+      '&:active': {
+        color: 'accent',
+      },
+    },
+  },
   buttons: {
     basic: {
       ...baseStyles.Button,
@@ -209,6 +231,28 @@ const theme: Theme = {
         transform: 'none',
         color: 'secondary',
         bg: 'primary',
+      },
+    },
+    boxes: {
+      card: {
+        display: 'flex',
+        bg: 'backgroundDarker',
+        color: 'primary',
+        borderRadius: '0',
+        height: '100%',
+        width: '100%',
+        cursor: 'pointer',
+        boxShadow: 'medium',
+        '&:hover': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          bg: 'backgroundDarkest',
+        },
+        '&:active': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          bg: 'backgroundDarker',
+        },
       },
     },
   },
