@@ -5,6 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
+import { InitializeColorMode } from 'theme-ui';
 
 function MyDocument() {
   return (
@@ -37,6 +38,7 @@ function MyDocument() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body>
+        <InitializeColorMode />
         <Main />
         <NextScript />
       </body>

@@ -6,13 +6,15 @@ interface NavButtonProps {
   href: string;
   label: string;
   variant?: string;
+  closeMenuOnClick?: () => void;
 }
 
 NavButton.defaultProps = {
   variant: 'nav',
+  closeMenuOnClick: null,
 };
 
-function NavButton({ href, label, variant }: NavButtonProps) {
+function NavButton({ href, label, variant, closeMenuOnClick }: NavButtonProps) {
   const router = useRouter();
   const isSelected = router.pathname === href;
 
@@ -27,6 +29,7 @@ function NavButton({ href, label, variant }: NavButtonProps) {
               borderBottom: '4px solid',
             },
           }}
+          onClick={closeMenuOnClick}
         >
           {label}
         </Button>

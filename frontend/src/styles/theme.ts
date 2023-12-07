@@ -1,6 +1,4 @@
-import { Theme } from 'theme-ui';
-
-const baseColors = {
+const lightColors = {
   text: 'hsl(220deg 30% 10%)',
   background: 'rgb(235, 235, 235)',
   backgroundDarker: 'rgb(225, 225, 225)',
@@ -41,221 +39,220 @@ const baseStyles = {
   },
 };
 
-const theme: Theme = {
-  breakpoints: ['576px', '768px', '992px', '1200px'],
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fonts: {
-    body: '"Avenir Next", system-ui, sans-serif',
-    heading: 'inherit',
-    monospace: 'Menlo, monospace',
-  },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
-  fontWeights: {
-    body: 400,
-    heading: 600,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.75,
-    heading: 1.25,
-  },
-  colors: {
-    ...baseColors,
-    modes: {
-      light: {
-        ...baseColors,
+const getTheme = (baseColor: string) => {
+  const baseColors = baseColor === 'dark' ? darkColors : lightColors;
+
+  return {
+    initialColorModeName: 'base',
+    breakpoints: ['576px', '768px', '992px', '1200px'],
+    space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+    fonts: {
+      body: '"Avenir Next", system-ui, sans-serif',
+      heading: 'inherit',
+      monospace: 'Menlo, monospace',
+    },
+    fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+    fontWeights: {
+      body: 400,
+      heading: 600,
+      bold: 700,
+    },
+    lineHeights: {
+      body: 1.75,
+      heading: 1.25,
+    },
+    colors: {
+      ...baseColors,
+      modes: {
+        light: {
+          ...lightColors,
+        },
+        dark: {
+          ...darkColors,
+        },
       },
-      dark: {
-        ...darkColors,
+    },
+    shadows: {
+      low: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.41),
+      0px 1.2px 1.4px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.41)`,
+      medium: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.38),
+      0px 1.6px 1.8px -1.2px hsl(var(--theme-ui-colors-shadow) / 0.38),
+      0px 5.9px 6.7px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.39)`,
+      high: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.35),
+      0px 2.1px 2.4px -0.5px hsl(var(--theme-ui-colors-shadow) / 0.35),
+      0px 4.4px 5px -1px hsl(var(--theme-ui-colors-shadow) / 0.36),
+      0px 8.4px 9.5px -1.5px hsl(var(--theme-ui-colors-shadow) / 0.36),
+      -0.1px 15.4px 17.4px -2px hsl(var(--theme-ui-colors-shadow) / 0.36),
+      -0.2px 26.5px 30px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.36)`,
+    },
+    styles: {
+      body: {
+        fontFamily: 'body',
+        lineHeight: 'body',
+        fontWeight: 'body',
       },
-    },
-  },
-  shadows: {
-    low: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.41),
-    0px 1.2px 1.4px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.41)`,
-    medium: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.38),
-    0px 1.6px 1.8px -1.2px hsl(var(--theme-ui-colors-shadow) / 0.38),
-    0px 5.9px 6.7px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.39)`,
-    high: `0px 0.3px 0.3px hsl(var(--theme-ui-colors-shadow) / 0.35),
-    0px 2.1px 2.4px -0.5px hsl(var(--theme-ui-colors-shadow) / 0.35),
-    0px 4.4px 5px -1px hsl(var(--theme-ui-colors-shadow) / 0.36),
-    0px 8.4px 9.5px -1.5px hsl(var(--theme-ui-colors-shadow) / 0.36),
-    -0.1px 15.4px 17.4px -2px hsl(var(--theme-ui-colors-shadow) / 0.36),
-    -0.2px 26.5px 30px -2.4px hsl(var(--theme-ui-colors-shadow) / 0.36)`,
-  },
-  styles: {
-    root: {
-      fontFamily: 'body',
-      lineHeight: 'body',
-      fontWeight: 'body',
-    },
-    h1: {
-      color: 'background',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 5,
-    },
-    h2: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 4,
-    },
-    h3: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 3,
-    },
-    h4: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 2,
-    },
-    h5: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 1,
-    },
-    h6: {
-      color: 'text',
-      fontFamily: 'heading',
-      lineHeight: 'heading',
-      fontWeight: 'heading',
-      fontSize: 0,
-    },
-    p: {
-      color: 'text',
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
-    },
-    pre: {
-      fontFamily: 'monospace',
-      overflowX: 'auto',
+      h1: {
+        color: 'background',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 5,
+      },
+      h2: {
+        color: 'text',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 4,
+      },
+      h3: {
+        color: 'text',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 3,
+        transition: 'all 0.2s ease-in-out',
+      },
+      h4: {
+        color: 'text',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 2,
+      },
+      h5: {
+        color: 'text',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 1,
+      },
+      h6: {
+        color: 'text',
+        fontFamily: 'heading',
+        lineHeight: 'heading',
+        fontWeight: 'heading',
+        fontSize: 0,
+      },
+      p: {
+        color: 'text',
+        fontFamily: 'body',
+        fontWeight: 'body',
+        lineHeight: 'body',
+      },
       code: {
-        color: 'inherit',
+        fontFamily: 'monospace',
+        fontSize: 'inherit',
+      },
+      svg: {
+        transition: 'all 0.2s ease-in-out',
       },
     },
-    code: {
-      fontFamily: 'monospace',
-      fontSize: 'inherit',
-    },
-    svg: {
-      transition: 'all 0.2s ease-in-out',
-    },
-  },
-  text: {
-    linkText: {
-      fontFamily: 'heading',
-      lineHeight: 'body',
-      fontWeight: 'body',
-      fontStyle: 'italic',
-      fontSize: 2,
-      color: 'accent',
-      transition: 'all 0.2s ease-in-out',
-      '&:hover': {
-        color: 'secondary',
-        textDecorationLine: 'underline',
-      },
-      '&:active': {
+    text: {
+      linkText: {
+        fontFamily: 'heading',
+        lineHeight: 'body',
+        fontWeight: 'body',
+        fontStyle: 'italic',
+        fontSize: 2,
         color: 'accent',
+        transition: 'all 0.2s ease-in-out',
+        '&:hover': {
+          color: 'secondary',
+          textDecorationLine: 'underline',
+        },
+        '&:active': {
+          color: 'accent',
+        },
       },
     },
-  },
-  buttons: {
-    basic: {
-      ...baseStyles.Button,
-    },
-    nav: {
-      bg: 'background',
-      color: 'primary',
-      borderRadius: '0',
-      height: '60px',
-      cursor: 'pointer',
-      '&:hover': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
+    buttons: {
+      basic: {
+        ...baseStyles.Button,
       },
-      '&:active': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
-        bg: 'primary',
-      },
-    },
-    burger: {
-      bg: 'background',
-      color: 'primary',
-      borderRadius: '0',
-      height: '100%',
-      width: '100vw',
-      cursor: 'pointer',
-      '&:hover': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
-      },
-      '&:active': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
-        bg: 'primary',
-      },
-    },
-    navIcon: {
-      bg: 'background',
-      color: 'primary',
-      cursor: 'pointer',
-      height: '60px',
-      width: '60px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: '100%',
-      '&:hover': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
-      },
-      '&:active': {
-        transition: 'all 0.2s ease-in-out',
-        transform: 'none',
-        color: 'secondary',
-        bg: 'primary',
-      },
-    },
-    boxes: {
-      card: {
-        display: 'flex',
-        bg: 'backgroundDarker',
+      nav: {
+        bg: 'background',
         color: 'primary',
         borderRadius: '0',
-        height: '100%',
-        width: '100%',
+        height: '60px',
         cursor: 'pointer',
-        boxShadow: 'medium',
         '&:hover': {
           transition: 'all 0.2s ease-in-out',
           transform: 'none',
-          bg: 'backgroundDarkest',
+          color: 'secondary',
         },
         '&:active': {
           transition: 'all 0.2s ease-in-out',
           transform: 'none',
-          bg: 'backgroundDarker',
+          color: 'secondary',
+          bg: 'primary',
+        },
+      },
+      burger: {
+        bg: 'background',
+        color: 'primary',
+        borderRadius: '0',
+        height: '100%',
+        width: '100vw',
+        cursor: 'pointer',
+        '&:hover': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          color: 'secondary',
+        },
+        '&:active': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          color: 'secondary',
+          bg: 'primary',
+        },
+      },
+      navIcon: {
+        bg: 'background',
+        color: 'primary',
+        cursor: 'pointer',
+        height: '60px',
+        width: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '100%',
+        '&:hover': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          color: 'secondary',
+        },
+        '&:active': {
+          transition: 'all 0.2s ease-in-out',
+          transform: 'none',
+          color: 'secondary',
+          bg: 'primary',
+        },
+      },
+      boxes: {
+        card: {
+          display: 'flex',
+          backgroundColor: 'backgroundDarker',
+          color: 'primary',
+          borderRadius: '0',
+          height: '100%',
+          width: '100%',
+          cursor: 'pointer',
+          boxShadow: 'medium',
+          '&:hover': {
+            transition: 'all 0.2s ease-in-out',
+            transform: 'none',
+            bg: 'backgroundDarkest',
+          },
+          '&:active': {
+            transition: 'all 0.2s ease-in-out',
+            transform: 'none',
+            bg: 'backgroundDarker',
+          },
         },
       },
     },
-  },
+  };
 };
 
-export default theme;
+export default getTheme;

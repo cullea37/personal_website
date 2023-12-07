@@ -56,7 +56,7 @@ function LandingPage() {
           <h3>Latest Blog...</h3>
         </Button>
         <Button variant="boxes.card">
-          <h3>Most recent happy customer...</h3>
+          <h3>Explore my latest creations...</h3>
         </Button>
       </Box>
       <Box
